@@ -5,9 +5,16 @@ import (
 	"net/http"
 )
 
-func handlerFunc(w http.ResponseWriter, r *http.Request)  {
+func handlerFunc(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
-	fmt.Fprint(w, "<h1>HI</h1>")
+
+	if r.URL.Path == "/" {
+		fmt.Fprint(w, "<h1>Main Page</h1>")
+	} else if r.URL.Path == "/contact" {
+		fmt.Fprint(w, "<h1>Contact Page</h1>")
+	} else {
+		fmt.Fprint(w, "<h1>Fuck Off!</h1>")
+	}
 }
 
 func main() {
